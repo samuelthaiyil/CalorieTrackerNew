@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="pPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <children>
+      <Label layoutX="100.0" layoutY="100.0" text="Food Name:" />
+      <Label layoutX="100.0" layoutY="150.0" text="Protein:" />
+      <Label layoutX="100.0" layoutY="200.0" text="Carbohydrates:" />
+      <Label layoutX="100.0" layoutY="250.0" text="Calories:" />
+      <TextField fx:id="tbFoodName" layoutX="250.0" layoutY="95.0" />
+      <TextField fx:id="tbCals" layoutX="250.0" layoutY="245.0">
+         <effect>
+            <BoxBlur height="0.0" iterations="0" width="0.0" />
+         </effect>
+      </TextField>
+      <TextField fx:id="tbProtein" layoutX="250.0" layoutY="136.0" />
+      <TextField fx:id="tbCarbs" layoutX="250.0" layoutY="196.0" />
+      <Button fx:id="btnSubmit" layoutX="257.0" layoutY="447.0" mnemonicParsing="false" text="Submit" />
+      <Button fx:id="btnViewMeals" layoutX="373.0" layoutY="447.0" mnemonicParsing="false" text="View Meals" />
+      <Label layoutX="104.0" layoutY="301.0" text="Meal:" />
+      <ChoiceBox fx:id="cbMeal" layoutX="233.0" layoutY="305.0" prefHeight="27.0" prefWidth="207.0" />
+      <Label layoutX="96.0" layoutY="375.0" text="Amount:" />
+      <TextField fx:id="tbAmt" layoutX="237.0" layoutY="368.0">
+         <effect>
+            <BoxBlur height="0.0" iterations="0" width="0.0" />
+         </effect>
+      </TextField>
+   </children>
+</Pane>

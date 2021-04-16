@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Charm&family=Raleway:wght@300&display=swap');
+/*used css to add custom web font from google*/
+
+.root{
+    -fx-font-family: 'Raleway', sans-serif;
+    -fx-font-size: 12px;
+    -fx-background-color: white;
+}
+.label{
+    -fx-text-fill: black;
+}
+.text-field{
+    -fx-border-color: black;
+    -fx-padding: 2px;
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-text-fill: black;
+}
+.button{
+    -fx-background-color: blue;
+    -fx-text-fill: white;
+    -fx-opacity: 0.5;
+}
+
+.button:hover{
+    -fx-opacity: 1;
+}
