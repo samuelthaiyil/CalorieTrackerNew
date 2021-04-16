@@ -1,12 +1,14 @@
 package sample;
 
 public class Food {
+    //instances
     private String foodName;
     private int amount;
     private double calories;
     private double protein;
     private double carbs;
 
+    //constructor
     public Food(String foodName, int amount, double calories, double protein, double carbs) {
         this.foodName = foodName;
         this.amount = amount;
@@ -15,6 +17,7 @@ public class Food {
         this.carbs = carbs;
     }
 
+    //getters and setters
     public String getFoodName() {
         return foodName;
     }

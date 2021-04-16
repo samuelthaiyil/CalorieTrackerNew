@@ -3,12 +3,15 @@ package sample;
 import java.util.ArrayList;
 
 public class Meal{
+    //holds food arraylist
     public ArrayList<Food> food;
 
+    //constructor intializes arraylist
     public Meal() {
         food = new ArrayList<>();
     }
 
+    //getters and setters
     public void addFood(Food f){
         food.add(f);
     }

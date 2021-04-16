@@ -38,11 +38,13 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        //add meal selections to choicebox
         cbMeal.getItems().add("Breakfast");
         cbMeal.getItems().add("Lunch");
         cbMeal.getItems().add("Dinner");
         cbMeal.getItems().add("Snack");
 
+        //add placeholder foods to meals
         breakfast.addFood(new Food("Eggs", 2, 45, 13, 1.1));
         breakfast.addFood(new Food("Bacon", 3, 43, 3, 1.4));
         breakfast.addFood(new Food("Toast", 1, 75, 13, 13));
@@ -51,6 +53,7 @@ public class Controller implements Initializable {
         snack.addFood(new Food("Dipps Caramel Granola Bar", 1, 150, 9, 3.3));
 
 
+        //on button submit action create a new food instance based on user input and add it to the selected meal from choicebox
         btnSubmit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -78,6 +81,7 @@ public class Controller implements Initializable {
             }
         });
 
+        //goto meal viewer
         btnViewMeals.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {

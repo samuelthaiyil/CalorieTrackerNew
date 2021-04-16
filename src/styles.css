@@ -1,14 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Charm&family=Raleway:wght@300&display=swap');
 /*used css to add custom web font from google*/
 
+/*set font and font size on root level abnd set background color to white*/
 .root{
     -fx-font-family: 'Raleway', sans-serif;
     -fx-font-size: 24px;
     -fx-background-color: white;
 }
+/*set label text color to black*/
 .label{
     -fx-text-fill: black;
 }
+/*set textfield and choicebox border color to black and translate them on the x axis by 2 font sizes, add 2 pixels of
+padding on top, bottom, left, right, set background color to transparent, set text color to black
+
+ */
 .text-field, .choice-box{
    -fx-border-color: black;
     -fx-translate-x: 2em;
@@ -17,6 +23,12 @@
     -fx-text-fill: black;
 }
 
+/*
+translate button by 2 font sizes on x axis
+set background color to blue
+set text color to white
+set opacity to .5
+ */
 .button{
     -fx-translate-x: 2em;
     -fx-background-color: blue;
@@ -24,10 +36,14 @@
     -fx-opacity: 0.5;
 }
 
+/*
+when mouse hovers over button set opacity to 1
+ */
 .button:hover{
     -fx-opacity: 1;
 }
 
+/*same as .button except color is set to green*/
 #btnViewMeals{
     -fx-translate-x: 2em;
     -fx-background-color: green;

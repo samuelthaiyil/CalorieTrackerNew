@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class MealViewerController implements Initializable {
 
+    //create instances for controller pane, scroll pane and add food btn
     public Controller controller;
     public Pane pPane = new Pane();
     public ScrollPane scrollPane = new ScrollPane();
@@ -24,10 +25,12 @@ public class MealViewerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //create daily totals label
         Label dailyTotals = new Label("Daily Totals");
         dailyTotals.relocate(50, 20);
         dailyTotals.setStyle("-fx-font-size: 20px;");
 
+        //set totals labels based on the sum of all meals totals
         Label totalFood = new Label("Total Foods: " + (Controller.breakfast.getTotalFoods()
                 + Controller.lunch.getTotalFoods()
                 + Controller.dinner.getTotalFoods()
@@ -52,15 +55,20 @@ public class MealViewerController implements Initializable {
                 + Controller.snack.getTotalCals()));
         totalCals.relocate(50, 110);
 
+        //create a line seperator
         Line seperator = new Line();
         seperator.setStartX(50);
         seperator.setStartY(150);
         seperator.setEndX(750);
         seperator.setEndY(150);
 
+        // add totals labels and seperators to pane
         pPane.getChildren().addAll(totalFood, totalCals, totalCarbs, totalProtein, dailyTotals, seperator);
 
+        //create count variable and set to 170
         int count = 170;
+
+        //if meal is not empty create and add label based on meal type
         if(!Controller.breakfast.getFood().isEmpty()) {
             Label breakfast = new Label("Meal: Breakfast");
             breakfast.relocate(50, count + 20);
@@ -69,9 +77,11 @@ public class MealViewerController implements Initializable {
         }
         for (Food e :
                 Controller.breakfast.getFood()) {
+            //create edit button and set y value based on count
             Button edit = new Button("Edit");
             edit.relocate(730, 55 + count);
 
+            //create labels for foodname, carvs, cals, edit and set y value based on count
             Label foodName = new Label(e.getFoodName());
             foodName.setStyle("-fx-font-size: 17px;");
             foodName.relocate(50, 55 + count);
@@ -88,25 +98,31 @@ public class MealViewerController implements Initializable {
             Label amt = new Label("Amount: " + e.getAmount());
             amt.relocate(50, 140 + count);
 
+            //create a line seperator and set y value based on count
             Line sep = new Line();
             sep.setStartX(50);
             sep.setStartY(160 + count);
             sep.setEndX(750);
             sep.setEndY(160 + count);
 
-
+            // add labels and buttons to pane
             pPane.getChildren().addAll(foodName, protein, carbs, cals, amt, sep, edit);
+            //increment count by 160
             count += 160;
 
+            //create a temp var that holds the current val of count which will be passed to createEditMenu()
             int finalCount = count;
             edit.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
+                    //call edit menu func
                     createEditMenu(e, foodName, protein, carbs, cals, amt, edit, finalCount);
                  }
             });
         }
 
+        //repeat for all meal types
+        //set all future counts based on the previouc meal types size and add previous count
         int count2 = Controller.breakfast.getFood().size() + count;
         if(!Controller.lunch.getFood().isEmpty()) {
             Label lunch = new Label("Meal: Lunch");
@@ -245,15 +261,18 @@ public class MealViewerController implements Initializable {
                 }
             });
         }
+        //set properties for addfood button
         btnAddFood.setMinHeight(27);
         btnAddFood.setMinWidth(56);
         btnAddFood.relocate(690, 45);
+        //add add food button to pane
         pPane.getChildren().add(btnAddFood);
         pPane.setStyle("-fx-background-color: white;");
         scrollPane.setStyle("-fx-background-color: white;");
         scrollPane.setContent(pPane);
         scrollPane.setPannable(true);
 
+        //when add food button is called return to add food model
         btnAddFood.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -271,8 +290,10 @@ public class MealViewerController implements Initializable {
         });
     }
 
+    //called when edit button is pressed
     public void createEditMenu(Food e, Label foodName, Label protein, Label carbs, Label cals, Label amt, Button edit, int count)
     {
+        //remove passed labels and buttons
         pPane.getChildren().remove(foodName);
         pPane.getChildren().remove(protein);
         pPane.getChildren().remove(carbs);
@@ -280,6 +301,7 @@ public class MealViewerController implements Initializable {
         pPane.getChildren().remove(amt);
         pPane.getChildren().remove(edit);
 
+        //create textfields to update food properties and a save button
         TextField tbFoodName = new TextField();
         TextField tbProtein = new TextField();
         TextField tbCals = new TextField();
@@ -288,12 +310,14 @@ public class MealViewerController implements Initializable {
         Button save = new Button("Save");
         save.relocate(730, count - 110);
 
+        //change textfield locations based on count
         tbFoodName.relocate(50, count - 110);
         tbProtein.relocate(50, count - 90);
         tbCarbs.relocate(50, count - 70);
         tbCals.relocate(50, count - 50);
         tbAmt.relocate(50, count - 30);
 
+        //set default text to foods existing properties
         tbFoodName.setText(e.getFoodName());
         tbProtein.setText(String.valueOf(e.getProtein()));
         tbCarbs.setText(String.valueOf(e.getCarbs()));
@@ -315,9 +339,11 @@ public class MealViewerController implements Initializable {
         // add to pane
         pPane.getChildren().addAll(tbFoodName, tbProtein, tbCarbs, tbCals, tbAmt, save);
 
+        //when save button is clicked
         save.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                //remove textfields and button
                 pPane.getChildren().remove(tbAmt);
                 pPane.getChildren().remove(tbCals);
                 pPane.getChildren().remove(tbCarbs);
@@ -325,18 +351,21 @@ public class MealViewerController implements Initializable {
                 pPane.getChildren().remove(tbProtein);
                 pPane.getChildren().remove(save);
 
+                //update food object based on inputted data
                 e.setFoodName(tbFoodName.getText());
                 e.setProtein(Double.parseDouble(tbProtein.getText()));
                 e.setCalories(Double.parseDouble(tbCals.getText()));
                 e.setAmount(Integer.parseInt(tbAmt.getText()));
                 e.setCarbs(Double.parseDouble(tbCarbs.getText()));
 
+                //set passed labels on updated food properties
                 foodName.setText(e.getFoodName());
                 protein.setText("Protein: " + String.valueOf(e.getProtein()) + "g");
                 carbs.setText("Carbohydrates: " + String.valueOf(e.getCarbs()) + "g");
                 cals.setText("Calories: " +String.valueOf(e.getCalories()));
                 amt.setText("Amount: " +String.valueOf(e.getAmount()));
 
+                //add passed labels to pane again
                 pPane.getChildren().addAll(foodName, protein, cals, carbs, amt, edit);
 
             }

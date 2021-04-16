@@ -13,6 +13,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
+        //load add food page and set title and add css to project
         Parent root = FXMLLoader.load(getClass().getResource("../models/sample.fxml"));
         primaryStage.setTitle("Calorie Tracker");
         Scene s = new Scene(root, 800, 600);
